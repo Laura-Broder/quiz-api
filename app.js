@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const quizControl = require("./quizControl");
 
-const port = 3005;
+const port = process.env.PORT || 3005;
 const app = express();
 app.use(bodyParser.json());
 
