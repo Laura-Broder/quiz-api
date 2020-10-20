@@ -1,11 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const quizControl = require("./quizControl");
-const cors = require("cors");
+// const cors = require("cors");
 const port = process.env.PORT || 3005;
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
 
 // TODO fix error handling - every function should handle the errors of it's own responsibility.
 
