@@ -1,11 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const quizControl = require("./quizControl");
-// const cors = require("cors");
+const cors = require("cors");
 const port = process.env.PORT || 3005;
 const app = express();
 app.use(bodyParser.json());
-// app.use(cors());
+app.use(cors());
 
 // TODO fix error handling - every function should handle the errors of it's own responsibility.
 
@@ -26,7 +26,7 @@ app.post("/quiz/:username/create", (req, res) => {
   if (!req.params.username) {
     throw new Error("no user name was given");
   }
-  const userName = req.params.username;
+  const userName = req.params.username.toLowerCase();
   const newUserProfile = quizControl.createNewUser(userName);
   res.send(newUserProfile);
 });
@@ -66,7 +66,7 @@ app.put(
 // ----------------------------------------
 // collect the correct answers of all friends.
 // ----------------------------------------
-app.get("/quiz/results/:username", quizControl.getResults);
+app.get("/quiz/:username/results", quizControl.getResults);
 
 // ----------------------------------------
 // ----------------------------------------
