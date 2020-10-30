@@ -19,22 +19,18 @@ const writeFile = (fileName, content) => {
   }
 
   const dataJSON = JSON.stringify(content);
-  fs.writeFileSync(
-    `${baseFilePath}${fileName.toLowerCase()}.json`,
-    dataJSON,
-    (error) => {
-      if (error) {
-        throw error;
-      }
-    },
-  );
+  fs.writeFileSync(`${baseFilePath}${fileName}.json`, dataJSON, (error) => {
+    if (error) {
+      throw error;
+    }
+  });
   return dataJSON;
 };
 const readFile = (fileName) => {
   if (!fileName) throw new Error("no file name was given.");
 
   const dataBuffer = fs.readFileSync(
-    `${baseFilePath}${fileName.toLowerCase()}.json`,
+    `${baseFilePath}${fileName}.json`,
     (error) => {
       if (error) {
         throw error;
@@ -234,7 +230,6 @@ exports.getResults = (req, res) => {
     throw new Error("no user name was given");
   }
   const userName = req.params.username;
-  console.log(userName);
   try {
     const user = JSON.parse(readFile(userName));
     const total = Object.keys(user.quizAnswers).length;
