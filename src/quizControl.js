@@ -58,7 +58,7 @@ const calcScore = (object1, object2) => {
     const keys1 = Object.keys(object1);
     const keys2 = Object.keys(object2);
     if (keys1.length !== keys2.length) {
-      throw new Error("the number of answers is noe equal");
+      throw new Error("the number of answers is not equal");
     }
     let counter = 0;
     for (let key of keys1) {

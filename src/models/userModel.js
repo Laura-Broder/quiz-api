@@ -1,44 +1,23 @@
 const mongoose = require("mongoose");
-const validator = require("validator");
+// const validator = require("validator");
 const { Schema } = mongoose;
 
-const addressSchema = new Schema({
-  building: String,
-  street: String,
-  zipcode: Number,
-  coord: {
-    type: Array,
-    validate(value) {
-      validator.isLatLong(`${value[0]}, ${value[1]}`);
-    },
-  },
-});
-
-const restSchema = new Schema({
+const userSchema = new Schema({
   name: {
     type: String,
     required: true,
   },
-  borough: {
-    type: String,
-  },
-  cuisine: {
-    type: String,
-  },
-  restaurant_id: {
-    type: Number,
-    required: true,
-    validate(value) {
-      if (value < 0) {
-        throw new Error("Restaurant id must be a positive number");
-      }
+  quizAnswers: [Number],
+  friendsScore: [
+    {
+      friendName: String,
+      friendId: String,
+      score: Number,
+      total: Number,
     },
-  },
-  address: {
-    type: addressSchema,
-  },
+  ],
 });
 
-const Restaurant = mongoose.model("Restaurant", restSchema);
+const UserModel = mongoose.model("User", userSchema);
 
-module.exports = Restaurant;
+module.exports = UserModel;

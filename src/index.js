@@ -1,23 +1,34 @@
-// TODO don't forget to update dev:nodemon src/index.js,
-
 const express = require("express");
+// ----------------------------------------
+// run mongoose db
+// ----------------------------------------
 require("./db/mongoose");
-
+// ----------------------------------------
+// for proxy
+// ----------------------------------------
 const cors = require("cors");
-const bodyParser = require("body-parser");
-
+// ----------------------------------------
+// require routers
+// ----------------------------------------
 const quizRouter = require("./routers/quizRouter");
 const useRouter = require("./routers/userRouter");
 const friendRouter = require("./routers/friendRouter");
-
+// ----------------------------------------
+// port
+// ----------------------------------------
 const port = process.env.PORT || 3005;
-
+// ----------------------------------------
+// express instance
+// ----------------------------------------
 const app = express();
-
-// app.use(express.json());
-app.use(bodyParser.json());
+// ----------------------------------------
+// json parser
+// ----------------------------------------
+app.use(express.json());
 app.use(cors());
-
+// ----------------------------------------
+// use routes
+// ----------------------------------------
 app.use(quizRouter);
 app.use(useRouter);
 app.use(friendRouter);
