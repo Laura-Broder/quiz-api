@@ -1,6 +1,5 @@
 const express = require("express");
 const router = new express.Router();
-const userControl = require("../controllers/userControl");
 const UserModel = require("../models/userModel");
 // ----------------------------------------
 // receive new username and create new json file

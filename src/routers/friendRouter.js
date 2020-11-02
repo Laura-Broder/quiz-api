@@ -1,6 +1,5 @@
 const express = require("express");
 const router = new express.Router();
-const quizControl = require("../quizControl");
 const UserModel = require("../models/userModel");
 const FriendModel = require("../models/friendModel");
 

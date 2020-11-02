@@ -1,9 +1,8 @@
 const express = require("express");
 const router = new express.Router();
-// TODO split the functions in to a separate file
-// const quizControl = require("../controllers/quizControl");
 const QuizModel = require("../models/quizModel");
 const testQuiz = require("../quiz");
+// TODO split the functions in to a separate file
 
 // ----------------------------------------
 // create a quiz (from file quiz.js)
@@ -22,8 +21,11 @@ router.post("/quiz-api/create-quiz", async (req, res) => {
 // ----------------------------------------
 // TODO update route in the axios request on client side
 router.get("/quiz-api/:id", async (req, res) => {
-  const quizId = req.params.id;
+  let quizId = req.params.id;
   try {
+    if (!quizId) {
+      quizId = "5f9c4a8c728fc14a0c0b239b";
+    }
     const quiz = await QuizModel.findById(quizId);
     if (!quiz) {
       return res.status(404).send("no quiz was found");
